@@ -1,0 +1,24 @@
+.container {
+  // display: flex;
+  // align-items: flex-end;
+  padding-bottom: 8px;
+}
+.articleInfo {
+  // padding-left: 24px;
+  padding-top: 4px;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #dcdcff;
+}
+.topic {
+  white-space: nowrap;
+}
+.date {
+  white-space: nowrap;
+}
+.title {
+  padding-bottom: 4px;
+  & a:hover {
+    color: #6464EF;
+  }
+}

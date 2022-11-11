@@ -1,0 +1,43 @@
+.navList {
+  display: flex;
+}
+
+.navList ul {
+  text-decoration: none;
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+}
+
+.navList li {
+  text-decoration: none;
+  padding: 10px 20px;
+}
+
+.navList a {
+  color: #4D4DDD;
+  font-weight: 700;
+  padding: 0 5px 5px;
+  // font-family: 'Inconsolata', monospace;
+  /* border-bottom: 4px solid #eb5e28; */
+  text-transform: uppercase;
+}
+
+.navList .hightlightedItemNav a {
+  color: #E34E1F;
+  font-weight: 700;
+  // text-shadow: 0 0 1px #D1562F
+}
+
+.rightNav {
+  display: flex;
+  align-items: center;
+}
+
+.rightNav svg {
+  margin: 10px 20px;
+}
+
+/* .navList a["active"] {
+
+} */

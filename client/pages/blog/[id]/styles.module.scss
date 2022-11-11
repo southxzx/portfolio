@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  margin-top: 48px;
+}
+
+.left {
+  width: 25%;
+  text-align: right;
+  padding-top: 8px;
+
+  & button {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+}
+
+.right {
+  width: 25%;
+}
+
+.center {
+  margin: 0 auto;
+  max-width: 680px;
+  // padding: 0 0 0 48px;
+
+  & h1 {
+    margin-bottom: 36px;
+  }
+
+  & p {
+    color: #292929;
+    font-size: 18px;
+    line-height: 28px;
+    margin-bottom: 16px;
+    font-family: 'Inconsolata', monospace;
+    font-weight: 400;
+  }
+}

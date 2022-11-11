@@ -1,0 +1,33 @@
+.container {
+  // padding: 0 24px;
+  display: flex;
+  // padding-top: 2rem;
+  overflow: hidden;
+}
+.leftBlock {
+  width: 40%;
+  text-align: right;
+  padding-right: 16px;
+  border-right: 1px solid #cccccc;
+  height: 100vh;
+  padding: 2rem 2rem;
+}
+.rightBlock {
+  // width: 70%;
+  // max-width: 640px;
+  width: 100%;
+  padding-left: 24px;
+  padding: 2rem;
+  overflow-y: scroll;
+  height: 100vh;
+  padding-right: 10px;
+}
+.listicles {
+  max-width: 640px;
+}
+.articleCard {
+  padding-bottom: 24px;
+}
+.title {
+  padding-top: 2rem;
+}
