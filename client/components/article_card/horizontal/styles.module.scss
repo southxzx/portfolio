@@ -18,6 +18,9 @@
 }
 .title {
   padding-bottom: 4px;
+  & a {
+    font-family: 'Inconsolata', monospace;
+  }
   & a:hover {
     color: #6464EF;
   }
