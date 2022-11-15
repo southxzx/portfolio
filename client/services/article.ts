@@ -1,16 +1,16 @@
 import callApi from "./api";
 
 const ArticleService = {
-  getAllArticles: async () => {
+  getAllArticles: async ({ page = 1, limit = 10 }) => {
     const res = await callApi({
       url: "article",
-      method: "GET"
+      method: "GET",
+      params: {
+        page,
+        limit
+      }
     });
-    if (Array.isArray(res.data)) {
-      return res.data;
-    } else {
-      return [];
-    }
+    return res.data;
   }
 };
 

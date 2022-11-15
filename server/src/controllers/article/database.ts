@@ -5,7 +5,7 @@ const createArticleDatabase = (data) => {
   return ArticleSchema.create(data);
 }
 
-const getAllArticles = async ({ limit = 10 }) => {
+const getAllArticles = async ({ limit = 10, page = 1 }) => {
   try {
     const articles = await ArticleSchema.aggregate([
       {
@@ -15,6 +15,10 @@ const getAllArticles = async ({ limit = 10 }) => {
       },
       {
         $limit: limit + 1,
+      },
+      {
+        $skip: limit * (page - 1),
+
       },
       {
         $sort: {
@@ -39,13 +43,26 @@ const getAllArticles = async ({ limit = 10 }) => {
         }
       }
     ]);
+
+    // get total documents in the Posts collection 
+    const count = await ArticleSchema.count();
+
+    let listArticles = {
+      total: count
+    };
+
     if (articles.length > limit) {
-      return articles.slice(0, limit);
+      listArticles["doc"] = articles.slice(0, limit);
+      return listArticles;
     } else {
-      return articles;
+      listArticles["doc"] = articles;
+      return listArticles;
     }
   } catch (error) {
-    return [];
+    return {
+      doc: [],
+      total: 0
+    }
   }
 }
 

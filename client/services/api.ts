@@ -90,7 +90,7 @@ const callApi = async ({
 
   const init: RequestInit = {
     headers: configs.header,
-    body: configs.params,
+    ...(configs.method !== "GET" && { body: configs.params }),
     method: configs.method
   }
 

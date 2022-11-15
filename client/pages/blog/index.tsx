@@ -10,14 +10,24 @@ import styles from "./styles.module.scss";
 const ListBlog: NextPage = () => {
 
   const [articles, setArticles] = useState<IArticle[]>([]);
+  const [page, setPage] = useState<number>(1);
+  const [isNextPage, setIsNextPage] = useState<boolean>(true);
+
+  const limit = 10;
 
   useEffect(() => {
     getAllArticles();
-  },[])
+  }, [])
 
   const getAllArticles = async () => {
-    const data: IArticle[] = await ArticleService.getAllArticles();
-    setArticles(data);
+    const data = await ArticleService.getAllArticles({ page, limit });
+    const docs: IArticle[] = data.doc;
+    const total: number = data.total;
+    setArticles(docs);
+
+    if (total >= page * limit) {
+      setIsNextPage(false);
+    }
   }
 
   return <div className={styles.container}>
