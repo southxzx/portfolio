@@ -1,10 +1,11 @@
 type IArticle = {
-  id: string,
+  _id: string,
   title: string,
-  topic: ITopic,
+  topic: ITopic[],
   tags: ITag[],
   content: string[],
-  date: Date
+  createdAt: string,
+  updatedAt: string,
 }
 
 type ITopic = {
