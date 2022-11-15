@@ -4,8 +4,14 @@ import { topicSchema, TopicSchema } from "./Topic";
 
 const article = new mongoose.Schema({
   title: String,
-  topic: topicSchema,
-  tags: [tagSchema],
+  topic: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Topic"
+  },
+  tags: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Tag"
+  }],
   content: {
     type: Array<String>,
   },

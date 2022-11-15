@@ -1,16 +1,18 @@
 import Joi from "joi";
-import { TagSchema } from "../../models/Tag";
-import { TopicSchema } from "../../models/Topic";
 
 const createArticle = Joi.object({
   title: Joi.string().required(),
-  topic: TopicSchema,
-  tag: [TagSchema],
+  topic: Joi.string().hex().length(24).required(),
+  tags: Joi.array().items(Joi.string().hex().length(24)),
   content: Joi.array().items(Joi.string()),
-  // topicId: Joi.string().required(),
-  // tagId: Joi.array().items(Joi.string()),
+});
+
+const getAllArticles = Joi.object({
+  page: Joi.number().default(1),
+  limit: Joi.number().default(10).max(50),
 });
 
 export {
-  createArticle
+  createArticle,
+  getAllArticles
 }

@@ -1,12 +1,11 @@
 import express, { Request, Response } from 'express';
 import { IRequest, IResponse } from '../../helpers/models/common';
 import { ErrorResponse } from '../../helpers/models/error_message';
-import { createArticleDatabase } from './database';
-import { createArticle } from './validation';
+import { createArticleDatabase, getAllArticles } from './database';
+import * as validation from './validation';
 
 const createArticleController = async (req: IRequest, res: IResponse) => {
-  // const resp = req.res;
-  const { error, value } = await createArticle.validate(req.body);
+  const { error, value } = await validation.createArticle.validate(req.body);
 
   if (error) {
     return req.customRes({
@@ -36,6 +35,27 @@ const createArticleController = async (req: IRequest, res: IResponse) => {
   }
 }
 
+const getAllArticlesController = async (req: IRequest, res) => {
+  const { error, value } = validation.getAllArticles.validate(req.query);
+  if (error) {
+    return req.customRes({
+      isError: true,
+      error: error.details,
+      message: ErrorResponse.INVALID_PARAMS,
+    });
+  } else {
+    const articles = await getAllArticles(value);
+
+    return req.customRes({
+      isError: false,
+      message: ErrorResponse.GET_SUCCESSFUL,
+      data: articles
+    });
+
+  }
+}
+
 export {
   createArticleController,
+  getAllArticlesController
 }

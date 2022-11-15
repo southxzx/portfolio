@@ -7,4 +7,8 @@ router.post("/article", function (req: IRequest, res: IResponse, next) {
   controller.createArticleController(req, res).catch(next);
 });
 
+router.get("/article", function (req: IRequest, res: IResponse, next) {
+  controller.getAllArticlesController(req, res).catch(next);
+});
+
 export default router;
