@@ -21,5 +21,7 @@ type ITag = {
 }
 
 export type {
-  IArticle
+  IArticle,
+  ITopic,
+  ITag
 }

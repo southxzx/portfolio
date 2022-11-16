@@ -1,0 +1,30 @@
+.container {
+  max-width: 90%;
+  margin: 0 auto;
+  margin-top: 24px;
+}
+
+.wrapper {
+  display: flex;
+}
+
+.editor {
+  width: 70%;
+}
+
+.controls {
+  border: 2px solid #eee;
+  border-radius: 10px;
+  width: 30%;
+  margin-left: 24px;
+}
+
+.btnCreate {
+  margin-top: 32px;
+  background-color: white;
+  outline: none;
+  border: 1px solid #292929;
+  padding: 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}

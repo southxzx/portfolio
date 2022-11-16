@@ -12,6 +12,7 @@ const ListBlog: NextPage = () => {
   const [articles, setArticles] = useState<IArticle[]>([]);
   const [page, setPage] = useState<number>(1);
   const [isNextPage, setIsNextPage] = useState<boolean>(true);
+  const [total, setTotal] = useState<number>(0);
 
   const limit = 10;
 
@@ -22,7 +23,11 @@ const ListBlog: NextPage = () => {
   const getAllArticles = async () => {
     const data = await ArticleService.getAllArticles({ page, limit });
     const docs: IArticle[] = data.doc;
-    const total: number = data.total;
+    const totalArticle: number = data.total;
+
+    if (total === 0) {
+      setTotal(totalArticle);
+    }
     setArticles(docs);
 
     if (total >= page * limit) {
@@ -34,7 +39,7 @@ const ListBlog: NextPage = () => {
     <div className={styles.leftBlock}>
       <BackButton backLink="/" />
       <h1 className={styles.title}>All posts</h1>
-      <p>Total: 5</p>
+      <p>Total: {total}</p>
     </div>
     <div className={styles.rightBlock}>
       <div className={styles.listicles}>

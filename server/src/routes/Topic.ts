@@ -6,5 +6,8 @@ const router = express.Router();
 router.post("/topic", function (req: IRequest, res: IResponse, next) {
   controller.createTopicController(req, res).catch(next);
 });
+router.get("/topic", function (req: IRequest, res: IResponse, next) {
+  controller.getAllTopicsController(req, res).catch(next);
+});
 
 export default router;

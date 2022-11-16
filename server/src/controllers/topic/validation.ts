@@ -8,6 +8,12 @@ const createTopicJoi = Joi.object({
   // image: String
 });
 
+const getAllTopicsJoi = Joi.object({
+  page: Joi.number().default(1),
+  limit: Joi.number().default(10).max(50),
+});
+
 export {
-  createTopicJoi
+  createTopicJoi,
+  getAllTopicsJoi
 }

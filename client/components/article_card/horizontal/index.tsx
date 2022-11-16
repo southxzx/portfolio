@@ -12,7 +12,7 @@ const ArticleCardHorizontal: FC<ArticleCardProps> = ({ blog }) => {
 
   const topic = blog.topic.length > 0 ? blog.topic[0] : null;
 
-  console.log("🚀 ~ file: index.tsx ~ line 11 ~ blog", blog)
+  // console.log("🚀 ~ file: index.tsx ~ line 11 ~ blog", blog)
   return <div className={styles.container}>
     <h2 className={styles.title}>
       <Link href={`/blog/${blog._id}`}>{blog.title}</Link>
