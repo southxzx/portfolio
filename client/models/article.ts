@@ -4,18 +4,26 @@ type IArticle = {
   topic: ITopic[],
   tags: ITag[],
   content: string[],
+  slug: string,
   createdAt: string,
   updatedAt: string,
 }
 
+type IArticleWirting = {
+  title: string,
+  topic: string,
+  tags: string[],
+  content: string[],
+}
+
 type ITopic = {
-  id: string,
+  _id: string,
   name: string,
   key: string
 }
 
 type ITag = {
-  id: string,
+  _id: string,
   name: string,
   key: string
 }
@@ -23,5 +31,6 @@ type ITag = {
 export type {
   IArticle,
   ITopic,
-  ITag
+  ITag,
+  IArticleWirting
 }

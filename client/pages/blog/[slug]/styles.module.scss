@@ -1,0 +1,83 @@
+@import "@Styles/variables.module.scss";
+
+.container {
+  display: flex;
+  margin-top: 48px;
+}
+
+.left {
+  width: 25%;
+  text-align: right;
+  padding-top: calc(1rem + 32px);
+
+  & button {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+
+  // position: fixed;
+}
+
+.right {
+  width: 25%;
+  padding-top: calc(1rem + 32px);
+
+  // position: fixed;
+}
+
+.center {
+  margin: 0 auto;
+  max-width: 680px;
+  // padding: 0 0 0 48px;
+
+  & h1 {
+    margin-bottom: 36px;
+  }
+
+  & p {
+    color: #292929;
+    font-size: 18px;
+    line-height: 28px;
+    margin-bottom: 16px;
+    font-family: 'Inconsolata', monospace;
+    font-weight: 400;
+  }
+}
+
+.tagItem {
+  padding: 6px;
+  border: 1px solid $s_purple_light2;
+  border-radius: 4px;
+  margin: 0 8px 8px 8px;
+  color: $s_purple_light;
+  font-family: 'Red Hat Display', sans-serif;
+  cursor: pointer;
+
+  &:hover {
+    border-color: $s_purple_light;
+    transition: all 300ms ease-in;
+  }
+}
+
+.labelTimeAgo {
+  display: inline-block;
+  margin-left: 4px;
+  color: #757575;
+}
+
+.timeBlock {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.listTagContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}

@@ -4,15 +4,20 @@ import { IconArrowBack } from "../icon";
 import styles from "./styles.module.scss";
 
 type BackButtonProps = {
-  backLink: string
+  backLink: string;
+  label?: string;
 }
 
-const BackButton: FC<BackButtonProps> = ({ backLink }) => {
+const BackButton: FC<BackButtonProps> = ({ backLink, label = "Back" }) => {
+
   return <button className={styles.container}>
-    <IconArrowBack />
-    <Link href={backLink}>
-      &#x200B; &#x200B; Back
-    </Link>
+    <Link href={backLink}><div>
+      <IconArrowBack /></div></Link>
+    {label && <label className={styles.label}>
+      <Link href={backLink}>
+        &#x200B; &#x200B; Back
+      </Link>
+    </label>}
   </button>
 }
 

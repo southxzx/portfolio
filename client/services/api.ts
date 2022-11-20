@@ -10,10 +10,11 @@ export interface configs {
   params?: any;
   method: 'POST' | 'GET' | 'PUT' | 'DELETE';
   options?: {
-    json?: boolean;
+    // json?: boolean;
     formData?: boolean;
     formUrlEncoded?: boolean;
     grantType?: boolean;
+    body: object
   };
   id?: number | string | undefined;
 }
@@ -40,6 +41,7 @@ const UrlParamater = {
 const callApi = async ({
   domain = HOST.DOMAIN,
   url,
+
   ...configs
 }: configs) => {
   let header: HeadersInit = {
@@ -70,28 +72,25 @@ const callApi = async ({
     configs.params &&
     (configs.method === 'POST' || configs.method === 'PUT' || configs.method === 'DELETE')
   ) {
-    if (configs.options?.json) {
-      configs.params = JSON.stringify(configs.params);
-      header['Content-type'] = 'application/json';
-    } else if (configs.options?.formData) {
+    if (configs.options?.formData) {
       header['Content-type'] = 'multipart/form-data';
     } else {
-      header['Content-type'] = 'application/x-www-form-urlencoded';
+      // header['Content-type'] = 'application/x-www-form-urlencoded';
       if (configs.options?.grantType) {
         configs.params = UrlParamater.encode2(configs.params);
       } else {
-        configs.params = Object.entries(configs.params).reduce((body, entry) => {
-          body.push({ name: entry[0], data: entry[1] });
-          return body;
-        }, [] as any[]);
+        configs.params = JSON.stringify(configs.params);
+        // header['Content-type'] = 'application/json';
       }
     }
   }
 
   const init: RequestInit = {
-    headers: configs.header,
     ...(configs.method !== "GET" && { body: configs.params }),
-    method: configs.method
+    method: configs.method,
+    mode: 'cors',
+    cache: 'default',
+    headers: header,
   }
 
   const res: IResponse = await fetch(url, init).then(function (response) {

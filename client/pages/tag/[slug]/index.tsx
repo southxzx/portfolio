@@ -1,11 +1,10 @@
 import { NextPage } from "next";
 import { useEffect, useState } from "react";
-import ArticleCardHorizontal from "../../components/article_card/horizontal";
-import BackButton from "../../components/back_button";
-import { IArticle } from "../../models/article";
-import ArticleService from "../../services/article";
-import { list_blogs } from "./mock_blog";
+import { IArticle } from "@Models/article";
 import styles from "./styles.module.scss";
+import ArticleService from "services/article";
+import BackButton from "components/back_button";
+import ArticleCardHorizontal from "components/article_card/horizontal";
 
 const ListBlog: NextPage = () => {
 

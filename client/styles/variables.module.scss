@@ -1,7 +1,23 @@
 // COLORS
-
 $s_red : #e63946;
 $s_blue_lightest: #f1faee;
 $s_blue_light: #a8dadc;
 $s_blue_normal: #457b9d;
 $s_blue_dark: #1d3557;
+
+$s_purple_primary: #4D4DDD;
+$s_purple_light: #7575EA;
+$s_purple_light2: #DCDEF3;
+$s_divider: rgb(234, 234, 234);
+
+// STACK
+$zindex-dropdown:       1000;
+$zindex-sticky:         1020;
+$zindex-fixed:          1030;
+$zindex-modal-backdrop: 1040;
+$zindex-modal:          1050;
+$zindex-popover:        1060;
+$zindex-tooltip:        1070;
+
+//
+$navbar_height: 75px;

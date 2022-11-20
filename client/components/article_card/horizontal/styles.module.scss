@@ -1,25 +1,42 @@
+@import "@Styles/variables.module.scss";
+
 .container {
   // display: flex;
   // align-items: flex-end;
   padding-bottom: 8px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 1rem;
+  padding: 1rem;
+  cursor: pointer;
 }
 .articleInfo {
   // padding-left: 24px;
   padding-top: 4px;
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid #dcdcff;
+  font-weight: 500;
+  margin-bottom: 0;
+  // font-family: 'Open Sans', sans-serif;
+  // border-top: 1px solid #dcdcff;
 }
 .topic {
   white-space: nowrap;
+  color: $s_purple_light;
+  margin-bottom: 0;
+  // background-color: $s_purple_light2;
+  // border-radius: 1rem;
+  // padding: 0.5rem 1rem;
 }
 .date {
   white-space: nowrap;
+  color: $s_purple_light;
+  margin-bottom: 0;
 }
 .title {
   padding-bottom: 4px;
   & a {
-    font-family: 'Inconsolata', monospace;
+    // color: $s_purple_primary;
+    font-family: 'Open Sans', sans-serif;
   }
   & a:hover {
     color: #6464EF;

@@ -6,6 +6,12 @@ const createTagJoi = Joi.object({
   // image: String
 });
 
+const getAllTagsJoi = Joi.object({
+  page: Joi.number().default(1),
+  limit: Joi.number().default(10).max(50),
+});
+
 export {
-  createTagJoi
+  createTagJoi,
+  getAllTagsJoi
 }

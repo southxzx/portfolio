@@ -1,0 +1,19 @@
+@import "./../../styles/variables.module.scss";
+
+.container {
+  padding: 12px;
+  border: 1px solid $s_purple_primary;
+  background-color: white;
+  border-radius: 8px;
+  width: fit-content;
+  text-transform: uppercase;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  color: $s_purple_primary;
+  cursor: pointer;
+
+  &:hover {
+    border-color: $s_purple_light2;
+    transition-duration: 300ms;
+  }
+}

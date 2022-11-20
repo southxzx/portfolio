@@ -12,7 +12,12 @@ const getAllArticles = Joi.object({
   limit: Joi.number().default(10).max(50),
 });
 
+const getDetailArticle = Joi.object({
+  slug:  Joi.string().required(),
+})
+
 export {
   createArticle,
-  getAllArticles
+  getAllArticles,
+  getDetailArticle
 }

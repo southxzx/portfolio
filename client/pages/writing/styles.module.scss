@@ -8,6 +8,20 @@
   display: flex;
 }
 
+.label {
+  display: block;
+  padding-bottom: 6px;
+}
+.controlBlock {
+  margin-bottom: 24px;
+}
+.inputControl {
+  padding: 10px;
+  border: 1px solid #cecece;
+  border-radius: 4px;
+  width: 100%;
+}
+
 .editor {
   width: 70%;
 }
@@ -17,6 +31,7 @@
   border-radius: 10px;
   width: 30%;
   margin-left: 24px;
+  padding: 24px;
 }
 
 .btnCreate {

@@ -4,6 +4,12 @@ type IResponse = {
   error: any
 }
 
+type IReponseList<T> = {
+  docs: T[],
+  total: number
+}
+
 export type {
-  IResponse
+  IResponse,
+  IReponseList
 }

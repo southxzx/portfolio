@@ -1,7 +1,6 @@
 import { ArticleSchema } from "../../models/Article";
 
 const createArticleDatabase = (data) => {
-  console.log("🚀 ~ file: database.ts ~ line 4 ~ createArticleDatabase ~ data", data)
   return ArticleSchema.create(data);
 }
 
@@ -52,21 +51,35 @@ const getAllArticles = async ({ limit = 10, page = 1 }) => {
     };
 
     if (articles.length > limit) {
-      listArticles["doc"] = articles.slice(0, limit);
+      listArticles["docs"] = articles.slice(0, limit);
       return listArticles;
     } else {
-      listArticles["doc"] = articles;
+      listArticles["docs"] = articles;
       return listArticles;
     }
   } catch (error) {
     return {
-      doc: [],
+      docs: [],
       total: 0
     }
   }
 }
 
+const getArticleBySlug = async (slug: string) => {
+  try {
+    const article = await (await ArticleSchema
+      .findOne({ slug }))
+      .populate({
+        path: "tags",
+      });;
+    return article;
+  } catch (error) {
+    return null;
+  }
+}
+
 export {
   createArticleDatabase,
-  getAllArticles
+  getAllArticles,
+  getArticleBySlug
 }

@@ -54,8 +54,6 @@ const getAllTopicsController = async (req: IRequest, res: Response) => {
       data: topics
     });
   }
-
-
 }
 
 export {

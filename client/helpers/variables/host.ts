@@ -1,5 +1,6 @@
 const HOST = {
   DOMAIN: process.env.NEXT_PUBLIC_DOMAIN,
+  SKIP_BUILD_STATIC_GENERATION: process.env.SKIP_BUILD_STATIC_GENERATION
 }
 
 export default HOST;
