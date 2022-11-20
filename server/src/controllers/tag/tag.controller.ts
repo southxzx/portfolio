@@ -1,8 +1,8 @@
 import { Response } from "express"
 import { IRequest } from "../../helpers/models/common"
 import { ErrorResponse } from "../../helpers/models/error_message";
-import { createTagDatabase, getTagsDB } from "./database";
-import { createTagJoi, getAllTagsJoi } from "./validation";
+import { createTagDatabase, getTagDetail, getTagsDB } from "./database";
+import { createTagJoi, getAllTagsJoi, getTagDetailJoi } from "./validation";
 
 const createTagController = async (req: IRequest, res: Response) => {
   const { error, value } = await createTagJoi.validate(req.body);
@@ -56,7 +56,30 @@ const getAllTagsController = async (req: IRequest, res: Response) => {
   }
 }
 
+const getTagDetailController = async (req: IRequest, res) => {
+  const { error, value } = await getTagDetailJoi.validate(req.params);
+
+  if (error) {
+    return req.customRes({
+      isError: true,
+      error: error.details,
+      message: ErrorResponse.INVALID_PARAMS,
+      // res
+    });
+  } else {
+    const tag = await getTagDetail(value);
+    console.log("🚀 ~ file: tag.controller.ts ~ line 71 ~ getTagDetailController ~ tag", tag)
+
+    return req.customRes({
+      isError: false,
+      message: ErrorResponse.GET_SUCCESSFUL,
+      data: tag
+    });
+  }
+}
+
 export {
   createTagController,
-  getAllTagsController
+  getAllTagsController,
+  getTagDetailController
 }

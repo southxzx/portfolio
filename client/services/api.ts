@@ -25,7 +25,11 @@ const UrlParamater = {
       return '';
     }
     return `?${Object.entries(data)
-      .map((entry: any[]) => `${entry[0]}=${entry[1]}`)
+      .map((entry: any[]) => {
+        if (entry[1]) {
+          return `${entry[0]}=${entry[1]}`;
+        }
+      })
       .join('&')}`;
   },
   encode2: (data: object) => {

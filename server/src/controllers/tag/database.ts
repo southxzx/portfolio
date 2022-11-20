@@ -28,7 +28,12 @@ const getTagsDB = async ({ limit = 10, page = 1 }) => {
   }
 }
 
+const getTagDetail = ({ tag = "" }) => {
+  return TagSchema.findOne({ key: tag });
+}
+
 export {
   createTagDatabase,
-  getTagsDB
+  getTagsDB,
+  getTagDetail
 }

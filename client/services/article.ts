@@ -1,15 +1,17 @@
+import { config } from "process";
 import { IArticle, IArticleWirting } from "../models/article";
 import { IReponseList } from "../models/common";
 import callApi from "./api";
 
 const ArticleService = {
-  getAllArticles: async ({ page = 1, limit = 10 }): Promise<IReponseList<IArticle>> => {
+  getAllArticles: async ({ page = 1, limit = 10, tag = "" }): Promise<IReponseList<IArticle>> => {
     const res = await callApi({
       url: "article",
       method: "GET",
       params: {
         page,
-        limit
+        limit,
+        ...(tag.length > 0 && { tag })
       }
     });
     return res.data;

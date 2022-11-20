@@ -1,12 +1,22 @@
-import { NextPage } from "next";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { useEffect, useState } from "react";
-import { IArticle } from "@Models/article";
+import { IArticle, ITag } from "@Models/article";
 import styles from "./styles.module.scss";
 import ArticleService from "services/article";
 import BackButton from "components/back_button";
 import ArticleCardHorizontal from "components/article_card/horizontal";
+import HOST from "helpers/variables/host";
+import TagService from "services/tag";
+import { IReponseList } from "@Models/common";
 
-const ListBlog: NextPage = () => {
+interface TagDetailProps {
+  tagResponses: IReponseList<IArticle>,
+  tagDetail: ITag
+}
+const TagDetail: NextPage<TagDetailProps> = ({
+  tagResponses,
+  tagDetail
+}) => {
 
   const [articles, setArticles] = useState<IArticle[]>([]);
   const [page, setPage] = useState<number>(1);
@@ -15,9 +25,9 @@ const ListBlog: NextPage = () => {
 
   const limit = 10;
 
-  useEffect(() => {
-    getAllArticles();
-  }, [])
+  // useEffect(() => {
+  //   getAllArticles();
+  // }, [])
 
   const getAllArticles = async () => {
     const data = await ArticleService.getAllArticles({ page, limit });
@@ -37,12 +47,12 @@ const ListBlog: NextPage = () => {
   return <div className={styles.container}>
     <div className={styles.leftBlock}>
       <BackButton backLink="/" label="" />
-      <h1 className={styles.titleAllPosts}>All posts</h1>
+      <h1 className={styles.titleAllPosts}>#{tagDetail.name}</h1>
       <p className={styles.totalCountLabel}>Total: {total}</p>
     </div>
     <div className={styles.rightBlock}>
       <div className={styles.listicles}>
-        {articles.map(blog => <div className={styles.articleCard}>
+        {tagResponses.docs.map(blog => <div className={styles.articleCard}>
           <ArticleCardHorizontal blog={blog} key={blog._id} />
         </div>)}
       </div>
@@ -50,4 +60,51 @@ const ListBlog: NextPage = () => {
   </div>
 };
 
-export default ListBlog;
+export const getStaticPaths: GetStaticPaths = async () => {
+  // When this is true (in preview environments) don't
+  // prerender any static pages
+  // (faster builds, but slower initial page load)
+  if (HOST.SKIP_BUILD_STATIC_GENERATION) {
+    return {
+      paths: [],
+      fallback: 'blocking',
+    }
+  }
+
+  // Call an external API endpoint to get posts
+  const res = await TagService.getAllTags({
+    page: 1,
+    limit: 50
+  });
+
+  // Get the paths we want to prerender based on posts
+  // In production environments, prerender all pages
+  // (slower builds, but faster initial page load)
+  const paths = res.docs.map((tag) => ({
+    params: { slug: tag.key },
+  }))
+
+  // { fallback: false } means other routes should 404
+  return { paths, fallback: false }
+}
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const { slug = "" } = context.params as any;
+  try {
+
+    const tagResponses = await ArticleService.getAllArticles({
+      tag: slug
+    });
+    const tagDetail = await TagService.getTagDetail({ tag: slug });
+    return {
+      props: {
+        tagResponses,
+        tagDetail
+      }
+    }
+  } catch (error) {
+    console.error(error);
+    return { props: { notFound: true } };
+  }
+}
+export default TagDetail;

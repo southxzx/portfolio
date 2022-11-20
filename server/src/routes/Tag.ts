@@ -9,5 +9,8 @@ router.post("/tag", function (req: IRequest, res: IResponse, next) {
 router.get("/tag", function (req: IRequest, res: IResponse, next) {
   controller.getAllTagsController(req, res).catch(next);
 });
+router.get("/tag/:tag", function (req: IRequest, res: IResponse, next) {
+  controller.getTagDetailController(req, res).catch(next);
+});
 
 export default router;

@@ -10,6 +10,7 @@ const createArticle = Joi.object({
 const getAllArticles = Joi.object({
   page: Joi.number().default(1),
   limit: Joi.number().default(10).max(50),
+  tag: Joi.string().default("")
 });
 
 const getDetailArticle = Joi.object({

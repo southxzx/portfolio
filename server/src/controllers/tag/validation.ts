@@ -11,7 +11,12 @@ const getAllTagsJoi = Joi.object({
   limit: Joi.number().default(10).max(50),
 });
 
+const getTagDetailJoi = Joi.object({
+  tag: Joi.string().required(),
+});
+
 export {
   createTagJoi,
-  getAllTagsJoi
+  getAllTagsJoi,
+  getTagDetailJoi
 }
