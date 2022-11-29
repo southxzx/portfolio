@@ -36,12 +36,7 @@ app.get("*", (err, req, res, next) => {
 
 
 app.get('/', (req: Request, res: IResponse) => {
-  res.customRes({
-    isError: false,
-    message: "Hello World!",
-    // res
-  });
-  // res.end('<h1>Hello World!</h1><hr>');
+  res.end('<h1>Hello World!</h1><hr>');
 });
 
 // Listen to server
