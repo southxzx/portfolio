@@ -95,3 +95,37 @@ a {
     /* color: #4D4DDD; */
   }
 }
+
+pre {
+  padding: 16px 0;
+  overflow: auto;
+  font-size: 1.25em;
+  line-height: 1.4;
+  background-color: rgba(223, 226, 229, .124);
+  border: 1px solid rgba(223, 226, 229, .333);
+  border-radius: 3px;
+}
+
+.hljs {
+  background-color: transparent;
+}
+
+code>div {
+  display: inline-block;
+  width: 100%;
+  padding: 0 16px;
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
+  counter-increment: line-code;
+}
+
+code>div::before {
+  display: inline-block;
+  width: 20px;
+  content: counter(line-code);
+  text-align: right;
+  font-size: .80em;
+  margin-right: 20px;
+  margin-left: -10px;
+  opacity: .3;
+}

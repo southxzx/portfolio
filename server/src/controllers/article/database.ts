@@ -2,7 +2,7 @@ import { ArticleSchema } from "../../models/Article";
 import { getTagDetail } from "../tag/database";
 
 const createArticleDatabase = (data) => {
-  return ArticleSchema.create(data);
+  return ArticleSchema.create({...data, content: [data.content]});
 }
 
 const getAllArticles = async ({ limit = 10, page = 1, tag = "" }) => {

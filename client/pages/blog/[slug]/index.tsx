@@ -1,6 +1,8 @@
+import dayjs from "dayjs";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import Script from "next/script";
 import BackButton from "../../../components/back_button";
 import { IconClock } from "../../../components/icon";
 import { rawHtml } from "../../../helpers/utils/common";
@@ -10,17 +12,21 @@ import { IArticle } from "../../../models/article";
 import ArticleService from "../../../services/article";
 import styles from "./styles.module.scss";
 
+
+
 type BlogDetailPageType = {
   article: IArticle;
 }
 const BlogDetailPage: NextPage<BlogDetailPageType> = ({ article }) => {
 
+
   return <>
     <Head>
-      <title>{article.title}</title>
+      <title>{dayjs(article.createdAt).format("MM.DD.YYYY") + " | " + article.title}</title>
       <meta property="og:title" content={article.title} key="title" />
       <meta property="og:description" content={article.title} key="title" />
     </Head>
+
     <div className={styles.container}>
       <div className={styles.left}>
         <BackButton backLink="/blog" label="" />
@@ -32,11 +38,12 @@ const BlogDetailPage: NextPage<BlogDetailPageType> = ({ article }) => {
         </div>
         <h1>{article.title}</h1>
         {article.content.map(content => rawHtml(content))}
+
       </div>
       <div className={styles.right}>
         <div className={styles.listTagContainer}>
           {article.tags.map(tag =>
-            <Link href={`/tag/${tag.key}`}><span className={styles.tagItem}>#{tag.name}</span>
+            <Link href={`/tag/${tag.key}`} key={tag._id}><span className={styles.tagItem}>#{tag.name}</span>
             </Link>)}
         </div>
       </div>

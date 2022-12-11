@@ -4,7 +4,7 @@ const createArticle = Joi.object({
   title: Joi.string().required(),
   topic: Joi.string().hex().length(24).required(),
   tags: Joi.array().items(Joi.string().hex().length(24)),
-  content: Joi.array().items(Joi.string()),
+  content: Joi.string(),
 });
 
 const getAllArticles = Joi.object({

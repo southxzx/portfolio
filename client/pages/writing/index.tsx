@@ -83,7 +83,7 @@ const WritingPage: NextPage = () => {
 
       await ArticleService.createArticle({
         ...articleDataSubmit,
-        content: [content]
+        content
       });
     }
   }
@@ -93,27 +93,49 @@ const WritingPage: NextPage = () => {
     getTags();
   }, []);
 
-  return (
+  return (<>
+    <script src="https://cdn.tiny.cloud/1/hpilpew6ajmtn4q2pxwisyq5sofvabzke2l28k1pne7smq8k/tinymce/6/tinymce.min.js" referrerPolicy="origin"></script>
+    {/* <script type="text/javascript" src="/plugins/tiny_plugin.min.js"></script> */}
+
     <div className={styles.container}>
       <div className={styles.wrapper}>
         <div className={styles.editor}>
           <Editor
+            id="southxzx"
+            // tinymceScriptSrc="https://cdn.tiny.cloud/1/hpilpew6ajmtn4q2pxwisyq5sofvabzke2l28k1pne7smq8k/tinymce/6/tinymce.min.js"
+            plugins={[
+              "hightlightjs"
+            ]}
             apiKey={KEY.TINY_MCE}
             onInit={(evt, editor) => (editorRef.current as any) = editor}
+
             initialValue="<p>This is the initial content of the editor.</p>"
             init={{
               height: 500,
               menubar: false,
+              codesample_languages: [
+                { text: 'HTML/XML', value: 'markup' },
+                { text: 'JavaScript', value: 'javascript' },
+                { text: 'CSS', value: 'css' },
+                { text: 'PHP', value: 'php' },
+                { text: 'Ruby', value: 'ruby' },
+                { text: 'Python', value: 'python' },
+                { text: 'Java', value: 'java' },
+                { text: 'C', value: 'c' },
+                { text: 'C#', value: 'csharp' },
+                { text: 'C++', value: 'cpp' }
+              ],
+              // external_plugins: {
+              //   "becodesample": '/plugins/tiny_plugin.min.js'
+              // },
               plugins: [
                 'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
                 'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-                'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
+                'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount', 'codesample'
               ],
-              toolbar: 'undo redo | blocks | ' +
-                'bold italic forecolor | alignleft aligncenter ' +
-                'alignright alignjustify | bullist numlist outdent indent | ' +
-                'removeformat | help',
-              content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+              toolbar: 'codesample code',
+              content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+              content_css: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/stackoverflow-light.min.css',
             }}
           />
           <button onClick={log}>Log editor content</button>
@@ -145,7 +167,7 @@ const WritingPage: NextPage = () => {
       </div>
 
       <button onClick={onCreateArticle} className={styles.btnCreate}>Create Article</button>
-    </div>
+    </div></>
   )
 };
 
