@@ -1,5 +1,6 @@
+import useIntersectionObserver from "helpers/hooks/useIntersectionObserver";
 import { NextPage } from "next";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ArticleCardHorizontal from "../../components/article_card/horizontal";
 import BackButton from "../../components/back_button";
 import { IArticle } from "../../models/article";
@@ -14,11 +15,21 @@ const ListBlog: NextPage = () => {
   const [isNextPage, setIsNextPage] = useState<boolean>(true);
   const [total, setTotal] = useState<number>(0);
 
+  const loadmoreRef = useRef<HTMLDivElement | null>(null);
+  const entry = useIntersectionObserver(loadmoreRef, {});
+  const isVisible = !!entry?.isIntersecting;
+
   const limit = 10;
 
   useEffect(() => {
     getAllArticles();
-  }, [])
+  }, [page]);
+
+  useEffect(() => {
+    if (isVisible) {
+      setPage(prev => prev + 1);
+    }
+  }, [isVisible]);
 
   const getAllArticles = async () => {
     const data = await ArticleService.getAllArticles({ page, limit });
@@ -28,7 +39,7 @@ const ListBlog: NextPage = () => {
     if (total === 0) {
       setTotal(totalArticle);
     }
-    setArticles(docs);
+    setArticles(prev => [...prev, ...docs]);
 
     if (total >= page * limit) {
       setIsNextPage(false);
@@ -46,6 +57,7 @@ const ListBlog: NextPage = () => {
         {articles.map(blog => <div className={styles.articleCard}>
           <ArticleCardHorizontal blog={blog} key={blog._id} />
         </div>)}
+        <div ref={loadmoreRef} />
       </div>
     </div>
   </div>
