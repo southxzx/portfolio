@@ -1,0 +1,11 @@
+.container {
+  max-width: 678px;
+  margin: 2rem auto 0 auto;
+}
+
+.contentBlock {
+  margin-bottom: 2rem;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

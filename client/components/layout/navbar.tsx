@@ -19,7 +19,7 @@ export default function NavBar() {
         <ul>
           <li className={getHighlightClassname("/")}><Link href="/">Home</Link></li>
           <li className={getHighlightClassname("/blog")}><Link href="/blog">Blog</Link></li>
-          {/* <li className={getHighlightClassname("/showcase")}><Link href="/showcase">Showcase</Link></li> */}
+          <li className={getHighlightClassname("/about")}><Link href="/about">About</Link></li>
           {/* <li className={getHighlightClassname("/contact")}><Link href="/contact">Contact</Link></li> */}
         </ul>
       </div>

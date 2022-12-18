@@ -1,0 +1,41 @@
+@import "@Styles/variables.module.scss";
+
+.container {
+  max-width: 678px;
+  margin: 2rem auto 0 auto;
+}
+
+.contentBlock {
+  margin-bottom: 2rem;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+.header {
+
+}
+.profileTitleWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.profileSocialWrapper {
+  
+}
+.profileName {
+  display: flex;
+  align-items: center;
+
+  h1 {
+    margin: 0;
+    padding-right: 10px;
+  }
+
+  span {
+    text-decoration: wavy;
+  }
+}
+.profilePicture {
+  border-radius: 50%;
+  border: 2px solid  $s_orange_primary;
+  padding: 2px;
+}

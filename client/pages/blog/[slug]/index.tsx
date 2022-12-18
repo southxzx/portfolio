@@ -3,6 +3,7 @@ import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import Script from "next/script";
+import { ParsedUrlQuery } from "querystring";
 import BackButton from "../../../components/back_button";
 import { IconClock } from "../../../components/icon";
 import { rawHtml } from "../../../helpers/utils/common";
@@ -51,6 +52,10 @@ const BlogDetailPage: NextPage<BlogDetailPageType> = ({ article }) => {
   </>
 }
 
+interface IParams extends ParsedUrlQuery {
+  slug: string
+}
+
 export const getStaticPaths: GetStaticPaths = async () => {
   // When this is true (in preview environments) don't
   // prerender any static pages
@@ -80,7 +85,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const { slug = "" } = context.params as any;
+  const { slug = "" } = context.params as IParams;
   try {
 
     const article = await ArticleService.getArticleDetail(slug);

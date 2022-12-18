@@ -1,8 +1,12 @@
+import { ButtonHTMLAttributes } from "react";
 import styles from "./styles.module.scss";
 
-const Button: React.FC<any> = () => {
-  return <button className={styles.container}>
-    Get to know me
+interface ButtonProps extends ButtonHTMLAttributes<any> {
+  children: React.ReactNode
+}
+const Button: React.FC<ButtonProps> = ({ children, ...rest }) => {
+  return <button {...rest} className={styles.container}>
+    {children}
   </button>
 };
 
