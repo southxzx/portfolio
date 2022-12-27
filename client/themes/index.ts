@@ -23,7 +23,7 @@ const theme = {
   components: {
     Heading: {
       baseStyle: {
-        fontWeight: "300"
+        // fontWeight: "300"
       },
       sizes: {
         // default size is md
