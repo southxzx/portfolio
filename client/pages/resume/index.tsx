@@ -14,7 +14,7 @@ interface AboutPageProps {
 }
 const AboutPage: NextPage<AboutPageProps> = ({ data }) => {
 
-  const { about, work_exp, contact, education, skills } = data;
+  const { about, work_exp, contact, education, skills, languages } = data;
 
   if (!data || isEmpty(data)) {
     return <h1>Sorry, this page was expired.</h1>;
@@ -36,9 +36,9 @@ const AboutPage: NextPage<AboutPageProps> = ({ data }) => {
           {Object.entries(contact).map((e) => {
             return <Flex key={e[0]} pb={2} alignItems="center">
               {mapSocialIcon(e[0])}
-              <Text as="span" color="gray.700" fontSize={12} textTransform="uppercase" pl={2} pr={1}>{e[0]}: </Text>
+              <Text as="span" color="gray.700" fontSize={12} textTransform="uppercase" mb={0} pl={2} pr={1}>{e[0]}: </Text>
               {e[1].link
-                ? <Link href={e[1].link || ""} isExternal mb={0} color="gray.700">{e[1].username || ""}</Link>
+                ? <Link href={e[1].link || ""} isExternal mb={0} color="blue.500">{e[1].username || ""}</Link>
                 : <Text color="gray.700">{e[1].username || ""}</Text>
               }
             </Flex>;
@@ -46,7 +46,7 @@ const AboutPage: NextPage<AboutPageProps> = ({ data }) => {
         </SimpleGrid>
       </div>
     </div>
-    
+
     <Divider height={2} my={4} color="blackAlpha.400" />
 
     {/* ----------------------- WORK EXP ------------------------- */}
@@ -54,7 +54,7 @@ const AboutPage: NextPage<AboutPageProps> = ({ data }) => {
       <Heading as="h2" size="md">{work_exp.title}</Heading>
       <Box mt={5} ml={2}>
         {
-          work_exp.content.map(work_exp_item => <Box>
+          work_exp.content.map(work_exp_item => <Box key={work_exp_item.company} mb={2}>
             <Flex alignItems="center" w="full">
               {work_exp_item.company_logo
                 ? <Image src={work_exp_item.company_logo} width={7} mr={2} />
@@ -71,7 +71,7 @@ const AboutPage: NextPage<AboutPageProps> = ({ data }) => {
             </Flex>
 
             <Box p={2}>
-              {work_exp_item.content.map(work_exp_item_content => <Box pt={2}>
+              {work_exp_item.content.map((work_exp_item_content, i) => <Box key={i} pt={2}>
                 <Text color="orange.400" fontSize="md" fontWeight="bold">{work_exp_item_content.title}</Text>
                 <Box className={styles.blockExpContent}>
                   {
@@ -87,14 +87,26 @@ const AboutPage: NextPage<AboutPageProps> = ({ data }) => {
 
     <Divider height={2} my={4} color="gray.300" />
 
-    <Box>
-      <Heading as="h2" size="md">{skills.title}</Heading>
-      <Box mr="20">
-        {
-          skills.content_html.map(html => rawHtml(html))
-        }
+    {/* ----------------------- SKILLS ------------------------- */}
+    <SimpleGrid columns={{ lg: 2 }}>
+      <Box>
+        <Heading as="h2" size="md">{skills.title}</Heading>
+        <Box mr="20">
+          {
+            skills.content_html.map(html => rawHtml(html))
+          }
+        </Box>
       </Box>
-    </Box>
+
+      <Box>
+        <Heading as="h2" size="md">{languages.title}</Heading>
+        <Box mr="20">
+          {
+            languages.content.map(content => <Text key={content}>{content}</Text>)
+          }
+        </Box>
+      </Box>
+    </SimpleGrid>
 
     <Divider my={4} color="gray.300" />
 
