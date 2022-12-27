@@ -8,9 +8,11 @@ export default function NavBar() {
   const router = useRouter();
   const currentRoute = router.pathname;
 
-  function getHighlightClassname(type: string) {
+  function getHighlightClassname(type: string | string[]) {
     return cn({
-      [styles.hightlightedItemNav]: type === currentRoute
+      [styles.hightlightedItemNav]: Array.isArray(type) 
+        ? type.includes(currentRoute) 
+        : type === currentRoute
     });
   }
   return (
@@ -19,7 +21,7 @@ export default function NavBar() {
         <ul>
           <li className={getHighlightClassname("/")}><Link href="/">Home</Link></li>
           <li className={getHighlightClassname("/blog")}><Link href="/blog">Blog</Link></li>
-          <li className={getHighlightClassname("/about")}><Link href="/about">About</Link></li>
+          <li className={getHighlightClassname(["/about", "/resume"])}><Link href="/about">About</Link></li>
           {/* <li className={getHighlightClassname("/contact")}><Link href="/contact">Contact</Link></li> */}
         </ul>
       </div>

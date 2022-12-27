@@ -33,14 +33,20 @@ export interface About {
   name: string;
   other_name: string;
   profile_picture: string;
+  deco_width: number;
 }
 
-export interface Contact {
-  linkedin: string;
-  github: string;
-  phone: string;
-  twitter: string;
-  email: string;
+interface Contact {
+  linkedin: ContactDetail;
+  github: ContactDetail;
+  phone: ContactDetail;
+  twitter: ContactDetail;
+  email: ContactDetail;
+}
+
+interface ContactDetail {
+  link: string;
+  username: string;
 }
 
 export interface Content2 {
@@ -48,11 +54,12 @@ export interface Content2 {
   content_html: string[];
 }
 
-export interface Content {
+export interface WorkExpContent {
   company: string;
   company_logo: string;
   company_link: string;
-  subtitle: string;
+  time: string;
+  location: string;
   content: Content2[];
 }
 
@@ -78,7 +85,7 @@ interface Languages {
 
 interface WorkExpResume {
   title: string;
-  content: Content[];
+  content: WorkExpContent[];
 }
 
 interface IResume {
