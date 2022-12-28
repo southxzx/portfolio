@@ -2,7 +2,6 @@ import dayjs from "dayjs";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import Script from "next/script";
 import { ParsedUrlQuery } from "querystring";
 import BackButton from "../../../components/back_button";
 import { IconClock } from "../../../components/icon";
@@ -35,7 +34,8 @@ const BlogDetailPage: NextPage<BlogDetailPageType> = ({ article }) => {
       <div className={styles.center}>
         <div className={styles.timeBlock}>
           <IconClock size={16} color="#757575" />
-          <span className={styles.labelTimeAgo}>{timeAgo(article.createdAt)}</span>
+          {/* <span className={styles.labelTimeAgo}>{timeAgo(article.createdAt)}</span> */}
+          <span className={styles.labelTimeAgo}>{dayjs(article.createdAt).format("MM.DD.YYYY")}</span>
         </div>
         <h1>{article.title}</h1>
         {article.content.map(content => rawHtml(content))}

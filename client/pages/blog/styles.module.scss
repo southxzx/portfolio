@@ -1,28 +1,23 @@
 @import "./../../styles/variables.module.scss";
 
 .container {
-  // padding: 0 24px;
   display: flex;
-  // padding-top: 2rem;
-  // overflow: hidden;
 }
 .leftBlock {
   width: 40%;
   text-align: right;
   border-right: 1px solid $s_divider;
-  height: 100vh;
   padding: 2rem 2rem;
   position: sticky;
-  top: 0;
+  position: -webkit-sticky; /* for Safari */
+  top: 45px;
+  align-self: flex-start;
+  height: 100vh;
 }
 .rightBlock {
-  // width: 70%;
-  // max-width: 640px;
   width: 100%;
   padding-left: 24px;
   padding: 2rem;
-  // overflow-y: scroll;
-  height: 100vh;
   padding-right: 10px;
 }
 .listicles {

@@ -5,7 +5,10 @@ import ArticleCardHorizontal from "../../components/article_card/horizontal";
 import BackButton from "../../components/back_button";
 import { IArticle } from "../../models/article";
 import ArticleService from "../../services/article";
-import { list_blogs } from "./mock_blog";
+import {
+  Heading, Text
+} from "@chakra-ui/react";
+
 import styles from "./styles.module.scss";
 
 const ListBlog: NextPage = () => {
@@ -49,8 +52,8 @@ const ListBlog: NextPage = () => {
   return <div className={styles.container}>
     <div className={styles.leftBlock}>
       <BackButton backLink="/" label="" />
-      <h1 className={styles.titleAllPosts}>All posts</h1>
-      <p className={styles.totalCountLabel}>Total: {total}</p>
+      <Heading size="lg" className={styles.titleAllPosts}>All posts</Heading>
+      <Text fontWeight="bold" className={styles.totalCountLabel} mt={2}>Total: {total}</Text>
     </div>
     <div className={styles.rightBlock}>
       <div className={styles.listicles}>

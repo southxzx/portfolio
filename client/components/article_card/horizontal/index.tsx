@@ -3,7 +3,10 @@ import { useRouter } from "next/router";
 import { FC } from "react";
 import { timeAgo } from "../../../helpers/utils/date_time";
 import { IArticle } from "../../../models/article";
+import { Heading } from "@chakra-ui/react";
+
 import styles from "./styles.module.scss";
+import dayjs from "dayjs";
 
 type ArticleCardProps = {
   blog: IArticle
@@ -19,12 +22,13 @@ const ArticleCardHorizontal: FC<ArticleCardProps> = ({ blog }) => {
   };
 
   return <div className={styles.container} onClick={onArticleClick}>
-    <h2 className={styles.title}>
+    <Heading as="h2" size="md" className={styles.title}>
       <Link href={`/blog/${blog.slug}`}>{blog.title}</Link>
-    </h2>
+    </Heading>
     <div className={styles.articleInfo}>
       <a className={styles.topic}>{topic?.name}</a>
-      <p className={styles.date}>{timeAgo(blog.createdAt)}</p>
+      {/* <p className={styles.date}>{timeAgo(blog.createdAt)}</p> */}
+      <p className={styles.date}>{dayjs(blog.createdAt).format("MM.DD.YYYY")}</p>
     </div>
   </div>
 }

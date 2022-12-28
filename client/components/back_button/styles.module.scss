@@ -6,6 +6,7 @@
   background: none;
   border: none;
   font-size: 1rem;
+  transition-duration: 300ms;
 
   &:hover {
     padding-right: 20px;
@@ -15,4 +16,7 @@
 .label {
   margin: 0;
   color: #4D4DDD;
+}
+.linkButton {
+  width: 100%;
 }

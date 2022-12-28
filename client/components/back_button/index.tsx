@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { FC } from "react";
 import { IconArrowBack } from "../icon";
 import styles from "./styles.module.scss";
@@ -10,13 +11,15 @@ type BackButtonProps = {
 
 const BackButton: FC<BackButtonProps> = ({ backLink, label = "Back" }) => {
 
-  return <button className={styles.container}>
-    <Link href={backLink}><div>
-      <IconArrowBack /></div></Link>
+  const router = useRouter();
+  const onClick = () => {
+    router.push(backLink);
+  }
+
+  return <button className={styles.container} onClick={onClick}>
+    <IconArrowBack />
     {label && <label className={styles.label}>
-      <Link href={backLink}>
-        &#x200B; &#x200B; Back
-      </Link>
+      &#x200B; &#x200B; Back
     </label>}
   </button>
 }
