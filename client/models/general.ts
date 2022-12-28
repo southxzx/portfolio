@@ -95,6 +95,7 @@ interface IResume {
   skills: Skills;
   education: Education;
   languages: Languages;
+  interests: Languages;
 }
 
 interface IResumeRoot {

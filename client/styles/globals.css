@@ -4,11 +4,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  /* background-color: #f1faee; */
   font-family: 'Open Sans', sans-serif;
-  /* color: "#252422"; */
-  /* overflow-y: hidden; */
-  overflow-y: auto;
 }
 
 a {
@@ -22,12 +18,11 @@ p {
 
 nav {
   padding: 0 4rem;
-  border-bottom: 1px solid #4D4DDD;
   display: flex;
   justify-content: space-between;
   position: sticky;
+  position: -webkit-sticky;
   top: 0;
-  background-color: white;
   backdrop-filter: saturate(180%) blur(5px);
   transition: background 0.6s ease 0s;
   border-bottom: 1px solid rgb(234, 234, 234);

@@ -52,7 +52,7 @@ const TagDetail: NextPage<TagDetailProps> = ({
     </div>
     <div className={styles.rightBlock}>
       <div className={styles.listicles}>
-        {tagResponses.docs.map(blog => <div className={styles.articleCard}>
+        {tagResponses.docs.map(blog => <div className={styles.articleCard} key={blog._id}>
           <ArticleCardHorizontal blog={blog} key={blog._id} />
         </div>)}
       </div>

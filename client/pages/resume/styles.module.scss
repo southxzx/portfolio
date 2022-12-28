@@ -9,6 +9,7 @@
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   border-radius: 8px;
   background-color: #fff;
+  margin-bottom: 36px;
 }
 
 .contentBlock {
@@ -70,12 +71,13 @@
   & p::before {
     display: block;
     content: "";
-    width: 5px;
-    height: 1px;
+    width: 4px;
+    height: 4px;
     background-color: #757575;
     position: absolute;
     top: 12px;
     left: 0;
+    border-radius: 50%;
   }
 
   & a {

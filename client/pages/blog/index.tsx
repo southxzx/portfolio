@@ -54,7 +54,7 @@ const ListBlog: NextPage = () => {
     </div>
     <div className={styles.rightBlock}>
       <div className={styles.listicles}>
-        {articles.map(blog => <div className={styles.articleCard}>
+        {articles.map(blog => <div className={styles.articleCard} key={blog._id}>
           <ArticleCardHorizontal blog={blog} key={blog._id} />
         </div>)}
         <div ref={loadmoreRef} />

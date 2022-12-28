@@ -1,7 +1,7 @@
+import Button from '@Components/button'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import Button from '@Components/Button';
 import styles from '../styles/Home.module.scss'
 
 const Home: NextPage = () => {
@@ -20,7 +20,9 @@ const Home: NextPage = () => {
             Hi there!
           </h2>
           <p className={styles.smallTitle}>Such an idiot place but I'm glad that you're here.</p>
-          <Button/>
+          <Button>
+            Get To Know Me
+          </Button>
         </div>
         <div className={`${styles.rightMain} ${styles.subMain}`}>
           <div className={styles.rightMainBg}>
