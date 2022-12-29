@@ -24,6 +24,7 @@ const theme = {
     Heading: {
       baseStyle: {
         // fontWeight: "300"
+        fontFamily: "'Red Hat Display', sans-serif"
       },
       sizes: {
         // default size is md

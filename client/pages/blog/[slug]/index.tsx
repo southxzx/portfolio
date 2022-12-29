@@ -1,15 +1,21 @@
 import dayjs from "dayjs";
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { 
+  GetStaticPaths,
+  GetStaticProps,
+  NextPage
+} from "next";
 import Head from "next/head";
 import Link from "next/link";
+import Script from "next/script";
 import { ParsedUrlQuery } from "querystring";
 import BackButton from "../../../components/back_button";
 import { IconClock } from "../../../components/icon";
 import { rawHtml } from "../../../helpers/utils/common";
-import { timeAgo } from "../../../helpers/utils/date_time";
 import HOST from "../../../helpers/variables/host";
 import { IArticle } from "../../../models/article";
 import ArticleService from "../../../services/article";
+import { Heading } from "@chakra-ui/react";
+
 import styles from "./styles.module.scss";
 
 
@@ -19,6 +25,7 @@ type BlogDetailPageType = {
 }
 const BlogDetailPage: NextPage<BlogDetailPageType> = ({ article }) => {
 
+  // useScript(url: );
 
   return <>
     <Head>
@@ -26,6 +33,8 @@ const BlogDetailPage: NextPage<BlogDetailPageType> = ({ article }) => {
       <meta property="og:title" content={article.title} key="title" />
       <meta property="og:description" content={article.title} key="title" />
     </Head>
+
+    <Script strategy="lazyOnload">hljs.highlightAll()</Script>
 
     <div className={styles.container}>
       <div className={styles.left}>
@@ -37,7 +46,7 @@ const BlogDetailPage: NextPage<BlogDetailPageType> = ({ article }) => {
           {/* <span className={styles.labelTimeAgo}>{timeAgo(article.createdAt)}</span> */}
           <span className={styles.labelTimeAgo}>{dayjs(article.createdAt).format("MM.DD.YYYY")}</span>
         </div>
-        <h1>{article.title}</h1>
+        <Heading as="h1" size="lg" mb={8}>{article.title}</Heading>
         {article.content.map(content => rawHtml(content))}
 
       </div>

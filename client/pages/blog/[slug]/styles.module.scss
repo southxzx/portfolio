@@ -3,6 +3,13 @@
 .container {
   display: flex;
   margin-top: 48px;
+  margin-bottom: 150px;
+
+  & h2 {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
 }
 
 .left {
@@ -32,11 +39,6 @@
 .center {
   margin: 0 auto;
   max-width: 680px;
-  // padding: 0 0 0 48px;
-
-  & h1 {
-    margin-bottom: 36px;
-  }
 
   & p {
     color: #292929;
@@ -65,7 +67,7 @@
 
 .labelTimeAgo {
   display: inline-block;
-  margin-left: 4px;
+  margin-left: 8px;
   color: #757575;
 }
 

@@ -1,16 +1,17 @@
 @import "./../../styles/variables.module.scss";
 
 .container {
-  padding: 12px;
+  padding: 12px 24px;
   border: 1px solid $s_purple_primary;
   background-color: white;
-  border-radius: 8px;
+  border-radius: 24px;
   width: fit-content;
   text-transform: uppercase;
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   color: $s_purple_primary;
   cursor: pointer;
+  transition-duration: 300ms;
 
   &:hover {
     border-color: $s_purple_light2;

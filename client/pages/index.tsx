@@ -2,9 +2,15 @@ import Button from '@Components/button'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import styles from '../styles/Home.module.scss'
 
 const Home: NextPage = () => {
+
+  const router = useRouter();
+  const onClickGetToKnowMe = () => {
+    router.push("/about");
+  }
 
   return (
     <div className={styles.container}>
@@ -20,7 +26,8 @@ const Home: NextPage = () => {
             Hi there!
           </h2>
           <p className={styles.smallTitle}>Such an idiot place but I'm glad that you're here.</p>
-          <Button>
+          
+          <Button onClick={onClickGetToKnowMe}>
             Get To Know Me
           </Button>
         </div>

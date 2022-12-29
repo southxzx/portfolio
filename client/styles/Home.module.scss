@@ -44,13 +44,15 @@
 .bigTitle {
   font-size: 64px;
   color: $s_purple_primary;
-  width: fit-content;
+  width: 250px;
+  display: inline-block;
   @include typingMixin;
   // font-family: 'Inconsolata', monospace;
 }
 
 .smallTitle {
   font-size: 44px;
+  margin-bottom: 24px;
 }
 
 // font-family: 'Inconsolata', monospace;

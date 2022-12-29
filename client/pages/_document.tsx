@@ -1,4 +1,5 @@
 import { Html, Head, Main, NextScript } from 'next/document'
+import Script from 'next/script'
 
 export default function Document() {
   return (
@@ -12,9 +13,6 @@ export default function Document() {
 
       <Head />
       <body>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js" integrity="sha512-bgHRAiTjGrzHzLyKOnpFvaEpGzJet3z4tZnXGjpsCcqOnAH6VGUx9frc5bcIhKTVLEiCO6vEhNAgx5jtLUYrfA==" crossOrigin="anonymous" referrerPolicy="no-referrer"></script>
-        <script >hljs.highlightAll()</script>
 
         <Main />
         <NextScript />
