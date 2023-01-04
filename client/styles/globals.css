@@ -5,6 +5,18 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+}
+
+@media only screen and (max-width: 768px) {
+  body {
+    font-size: 13px;
+  }
+}
+@media only screen and (max-width: 576px) {
+  body {
+    font-size: 12px;
+  }
 }
 
 a {
@@ -47,6 +59,7 @@ a {
   /* color: #4D4DDD; */
   margin: 0;
   margin-bottom: 1rem;
+  font-size: 1em;
 }
 
 /* width */
@@ -100,6 +113,7 @@ pre {
   background-color: rgba(223, 226, 229, .124);
   border: 1px solid rgba(223, 226, 229, .333);
   border-radius: 3px;
+  margin-bottom: 16px !important;
 }
 
 .hljs {

@@ -34,6 +34,7 @@ const WritingPage: NextPage = () => {
   });
   const [topics, setTopics] = useState<ITopic[]>([]);
   const [tags, setTags] = useState<ITag[]>([]);
+  const [selectedTags, setSelectedTags] = useState<ITag[]>([]);
 
   const getTopics = async () => {
     const data = await TopicService.getAllTopics({
@@ -59,7 +60,9 @@ const WritingPage: NextPage = () => {
   }
 
   const onSelectTags = (selectedList: ITag[]) => {
+    console.log("🚀 ~ file: index.tsx:62 ~ onSelectTags ~ selectedList", selectedList)
     setArticleDataSubmit(prev => ({ ...prev, tags: selectedList.map(tag => tag._id) }));
+    setSelectedTags(selectedList);
   }
 
   const onSelectTopic = (e: SyntheticEvent) => {
@@ -131,14 +134,15 @@ const WritingPage: NextPage = () => {
               plugins: [
                 'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
                 'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-                'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount', 'codesample'
+                'insertdatetime', 'media', 'table', 'help', 'wordcount', 'codesample code'
               ],
               toolbar:  'undo redo | formatselect | ' +
               'bold italic backcolor | alignleft aligncenter ' +
               'alignright alignjustify | bullist numlist outdent indent | ' +
-              'removeformat | help' + 'codesample code',
+              'removeformat | help' + '| codesample code',
               content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
               content_css: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/stackoverflow-light.min.css',
+              
             }}
           />
           <button onClick={log}>Log editor content</button>
@@ -160,7 +164,7 @@ const WritingPage: NextPage = () => {
             <label className={styles.label}>Tag: </label>
             <Multiselect
               options={tags} // Options to display in the dropdown
-              selectedValues={articleDataSubmit.tags} // Preselected value to persist in dropdown
+              selectedValues={selectedTags} // Preselected value to persist in dropdown
               onSelect={onSelectTags} // Function will trigger on select event
               onRemove={onRemoveTag} // Function will trigger on remove event
               displayValue="name" // Property name to display in the dropdown options
