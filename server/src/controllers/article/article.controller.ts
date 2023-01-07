@@ -1,7 +1,6 @@
-import express, { Request, Response } from 'express';
 import { IRequest, IResponse } from '../../helpers/models/common';
 import { ErrorResponse } from '../../helpers/models/error_message';
-import { createArticleDatabase, getAllArticles, getArticleBySlug } from './database';
+import { createArticleDatabase, getAllArticles, getArticleBySlug, getArticleById } from './database';
 import { titleToSlug } from './utils';
 import * as validation from './validation';
 
@@ -69,11 +68,45 @@ const getArticleDetail = async (req: IRequest) => {
   } else {
     const article = await getArticleBySlug(value.slug);
 
+    if (!article) {
+      return req.customRes({
+        isError: true,
+        message: ErrorResponse.NOT_FOUND,
+      });
+    } else {
+      return req.customRes({
+        isError: false,
+        message: ErrorResponse.GET_SUCCESSFUL,
+        data: article
+      });
+    }
+  }
+}
+
+const getArticleDetailById = async (req: IRequest) => {
+  const { error, value = {} } = validation.getDetailArticleById.validate(req.params);
+
+  if (error) {
     return req.customRes({
-      isError: false,
-      message: ErrorResponse.GET_SUCCESSFUL,
-      data: article
+      isError: true,
+      error: error.details,
+      message: ErrorResponse.INVALID_PARAMS,
     });
+  } else {
+    const article = await getArticleById(value.id || "");
+
+    if (!article) {
+      return req.customRes({
+        isError: true,
+        message: ErrorResponse.NOT_FOUND,
+      });
+    } else {
+      return req.customRes({
+        isError: false,
+        message: ErrorResponse.GET_SUCCESSFUL,
+        data: article
+      });
+    }
 
   }
 }
@@ -81,5 +114,6 @@ const getArticleDetail = async (req: IRequest) => {
 export {
   createArticleController,
   getAllArticlesController,
-  getArticleDetail
+  getArticleDetail,
+  getArticleDetailById
 }

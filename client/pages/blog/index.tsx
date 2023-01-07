@@ -26,10 +26,11 @@ const ListBlog: NextPage = () => {
 
   useEffect(() => {
     getAllArticles();
+    return () => setArticles([]);
   }, [page]);
 
   useEffect(() => {
-    if (isVisible) {
+    if (isVisible && isNextPage && (articles.length >= limit * page)) {
       setPage(prev => prev + 1);
     }
   }, [isVisible]);
@@ -44,7 +45,7 @@ const ListBlog: NextPage = () => {
     }
     setArticles(prev => [...prev, ...docs]);
 
-    if (total >= page * limit) {
+    if (totalArticle < page * limit) {
       setIsNextPage(false);
     }
   }

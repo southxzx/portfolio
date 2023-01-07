@@ -11,7 +11,7 @@ export default function Layout({ children }: LayoutProps) {
     <>
       <NavBar />
       {children}
-      <Footer/>
+      {/* <Footer/> */}
     </>
   )
 }

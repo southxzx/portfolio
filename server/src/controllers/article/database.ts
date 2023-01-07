@@ -96,7 +96,20 @@ const getArticleBySlug = async (slug: string) => {
       .findOne({ slug }))
       .populate({
         path: "tags",
-      });;
+      });
+    return article;
+  } catch (error) {
+    return null;
+  }
+}
+
+const getArticleById = async (id: string) => {
+  try {
+    const article = await (await ArticleSchema
+      .findOne({ _id: id }))
+      .populate({
+        path: "tags",
+      });
     return article;
   } catch (error) {
     return null;
@@ -106,5 +119,6 @@ const getArticleBySlug = async (slug: string) => {
 export {
   createArticleDatabase,
   getAllArticles,
-  getArticleBySlug
+  getArticleBySlug,
+  getArticleById
 }

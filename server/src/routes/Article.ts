@@ -13,5 +13,8 @@ router.get("/article", function (req: IRequest, res: IResponse, next) {
 router.get("/article/:slug", function (req: IRequest, res: IResponse, next) {
   controller.getArticleDetail(req).catch(next);
 });
+router.get("/article-id/:id", function (req: IRequest, res: IResponse, next) {
+  controller.getArticleDetailById(req).catch(next);
+});
 
 export default router;

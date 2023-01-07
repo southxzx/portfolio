@@ -39,6 +39,18 @@ const ArticleService = {
     } catch (error) {
       throw new Error();
     }
+  },
+
+  getArticleDetailById: async (id: string): Promise<IArticle> => {
+    try {
+      const res = await callApi({
+        url: `article-id/${id}`,
+        method: "GET"
+      });
+      return res.data;
+    } catch (error) {
+      throw new Error();
+    }
   }
 };
 

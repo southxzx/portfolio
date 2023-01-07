@@ -32,6 +32,15 @@
       "@Services/*": [
         "./models/*"
       ],
+      "@Hooks/*": [
+        "./helpers/hooks*"
+      ],
+      "@Utils/*": [
+        "./helpers/utils*"
+      ],
+      "@Variables/*": [
+        "./helpers/variables*"
+      ],
     },
   },
   "include": [

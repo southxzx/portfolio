@@ -12,11 +12,11 @@
   position: -webkit-sticky; /* for Safari */
   top: 45px;
   align-self: flex-start;
-  height: 100vh;
+  height: calc(100vh - $navbar_height);
 }
 .rightBlock {
   width: 100%;
-  padding-left: 24px;
+  padding-left: 16px;
   padding: 2rem;
   padding-right: 10px;
 }

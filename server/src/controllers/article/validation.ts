@@ -15,10 +15,15 @@ const getAllArticles = Joi.object({
 
 const getDetailArticle = Joi.object({
   slug:  Joi.string().required(),
-})
+});
+
+const getDetailArticleById = Joi.object({
+  id:  Joi.string().required(),
+});
 
 export {
   createArticle,
   getAllArticles,
-  getDetailArticle
+  getDetailArticle,
+  getDetailArticleById
 }

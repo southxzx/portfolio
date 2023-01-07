@@ -1,15 +1,15 @@
 import { NextPage } from "next";
 import { Editor } from '@tinymce/tinymce-react';
 import { SyntheticEvent, useEffect, useRef, useState } from "react";
-import KEY from "../../helpers/variables/key";
+import KEY from "../../../helpers/variables/key";
 
 import styles from "./styles.module.scss";
-import { ITag, ITopic } from "../../models/article";
-import TopicService from "../../services/topic";
+import { ITag, ITopic } from "../../../models/article";
+import TopicService from "../../../services/topic";
 
 import Multiselect from 'multiselect-react-dropdown';
-import TagService from "../../services/tag";
-import ArticleService from "../../services/article";
+import TagService from "../../../services/tag";
+import ArticleService from "../../../services/article";
 
 type IArticleDataSubmit = {
   title: string;
@@ -60,7 +60,6 @@ const WritingPage: NextPage = () => {
   }
 
   const onSelectTags = (selectedList: ITag[]) => {
-    console.log("🚀 ~ file: index.tsx:62 ~ onSelectTags ~ selectedList", selectedList)
     setArticleDataSubmit(prev => ({ ...prev, tags: selectedList.map(tag => tag._id) }));
     setSelectedTags(selectedList);
   }
@@ -131,18 +130,14 @@ const WritingPage: NextPage = () => {
               // external_plugins: {
               //   "becodesample": '/plugins/tiny_plugin.min.js'
               // },
-              plugins: [
-                'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
-                'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-                'insertdatetime', 'media', 'table', 'help', 'wordcount', 'codesample code'
-              ],
-              toolbar:  'undo redo | formatselect | ' +
-              'bold italic backcolor | alignleft aligncenter ' +
-              'alignright alignjustify | bullist numlist outdent indent | ' +
-              'removeformat | help' + '| codesample code',
+              plugins: 'codesample code',
+              toolbar: 'undo redo | formatselect | ' +
+                'bold italic backcolor | alignleft aligncenter ' +
+                'alignright alignjustify | bullist numlist outdent indent | ' +
+                'removeformat | help' + '| codesample code',
               content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
               content_css: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/stackoverflow-light.min.css',
-              
+
             }}
           />
           <button onClick={log}>Log editor content</button>
